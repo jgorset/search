@@ -25,9 +25,7 @@ class Search
         [Search.new(search, haystack: file.read).quality, file.path]
       end
 
-      filenames_with_quality.sort_by { |x, y| x[0] <=> y[0] }
-
-      filenames_with_quality[0, limit]
+      filenames_with_quality.sort_by(&:first).reverse[0, limit]
     end
 
     def suggestions
