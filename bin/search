@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require 'search'
+require 'slop'
+
+begin
+  options = Slop.parse do |o|
+    o.string '-f', '--files', 'A file glob to search'
+    o.integer '-n', '--number', 'A number of results to return', default: 10
+    o.on '-v', '--version' do
+      puts "search #{Search::VERSION}"
+      exit
+    end
+    o.on '-h', '--help' do
+      puts o
+      exit
+    end
+  end
+
+  search = Search::CLI.new options.arguments.first, options
+
+  search.qualities.each do |quality, filename|
+    puts "[#{quality}%] #{filename}"
+  end
+rescue StandardError => error
+  puts error.message
+end
