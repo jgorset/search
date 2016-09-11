@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'search/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'search'
+  spec.name          = 'jgorset-search'
   spec.version       = Search::VERSION
   spec.authors       = ['Johannes Gorset']
   spec.email         = ['jgorset@gmail.com']

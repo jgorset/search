@@ -4,9 +4,9 @@ This gem searches files and offers suggestions to narrow the search.
 
 ## Installation
 
-You'll need Ruby > 3.1
+    $ gem install jgorset-search
 
-    $ gem install search
+You'll need Ruby > 2.1.
 
 ## Usage
 
