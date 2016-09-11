@@ -17,11 +17,17 @@ begin
     end
   end
 
-  search = Search::CLI.new options.arguments.first, options
+  filenames = Dir.glob(options[:files])
+  search = Search::Manager.new(limit: options[:n])
 
-  search.qualities.each do |quality, filename|
+  filenames.each do |filename|
+    file = File.new(filename)
+    search.cache(file)
+  end
+
+  search.match(options.arguments.first).each do |quality, filename|
     puts "[#{quality}%] #{filename}"
   end
 rescue StandardError => error
-  puts error.message
+  puts "search: #{error.message}"
 end

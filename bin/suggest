@@ -17,11 +17,17 @@ begin
     end
   end
 
-  search = Search::CLI.new options.arguments.first, options
+  filenames = Dir.glob(options[:files])
+  search = Search::Manager.new(limit: options[:n])
 
-  search.suggestions.each do |suggestion|
+  filenames.each do |filename|
+    file = File.new(filename)
+    search.cache(file)
+  end
+
+  search.suggest(options.arguments.first).each do |suggestion|
     puts suggestion
   end
 rescue StandardError => error
-  puts error.message
+  puts "suggest: #{error.message}"
 end
