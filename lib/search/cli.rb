@@ -29,5 +29,11 @@ class Search
 
       filenames_with_quality[0, limit]
     end
+
+    def suggestions
+      files.map do |file|
+        Search.new(search, haystack: file.read).suggestions
+      end[0, limit]
+    end
   end
 end
