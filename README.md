@@ -4,6 +4,8 @@ This gem searches files and offers suggestions to narrow the search.
 
 ## Installation
 
+You'll need Ruby > 3.1
+
     $ gem install search
 
 ## Usage
@@ -11,7 +13,7 @@ This gem searches files and offers suggestions to narrow the search.
 ### Find files matching the given string
 
 ```sh
-$ search 'foo' --files=texts/*.txt
+$ search 'foo' --files=spec/fixtures/*.txt
 [100%] texts/just_the_word_foo.txt
 [10%] texts/foo_and_other_words.txt
 ```
@@ -19,7 +21,7 @@ $ search 'foo' --files=texts/*.txt
 ### Get suggestions for narrowing your search
 
 ```sh
-$ suggest 'what is' --files=texts/*.txt
+$ suggest 'what is' --files=spec/fixtures/*.txt
 what is the meaning of life?
 what is my ip
 what is pokemon go
