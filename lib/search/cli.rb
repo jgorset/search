@@ -1,6 +1,6 @@
 class Search
   class CLI
-    attr_reader :search, :glob, :limit
+    attr_reader :search, :glob
 
     def initialize(search, options)
       @search = search
@@ -25,13 +25,25 @@ class Search
         [Search.new(search, haystack: file.read).quality, file.path]
       end
 
-      filenames_with_quality.sort_by(&:first).reverse[0, limit]
+      limit sort filenames_with_quality
     end
 
     def suggestions
-      files.map do |file|
+      suggestions = files.map do |file|
         Search.new(search, haystack: file.read).suggestions
-      end[0, limit]
+      end
+
+      limit suggestions
+    end
+
+    private
+
+    def sort(array)
+      array.sort_by(&:first).reverse
+    end
+
+    def limit(array)
+      array[0, @limit]
     end
   end
 end
