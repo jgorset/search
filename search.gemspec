@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
     '{lib,test,bin,doc,config}/**/*', 'LICENSE.txt', 'README*'
   ]
 
-  spec.bindir        = 'exe'
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.bindir        = 'bin'
+  spec.executables   = ['search', 'suggest']
   spec.require_paths = ['lib']
 
   spec.add_dependency 'slop', '~> 4.4'
