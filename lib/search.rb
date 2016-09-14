@@ -27,7 +27,7 @@ class Search
   def suggest(search)
     suggestions = []
 
-    haystack.scan /#{search}(?<suggestion>\b[^.?!]+\b{1,5})/io do |match|
+    haystack.scan /#{search}(?<suggestion>\b[^.?!]+\b{1,5})/i do |match|
       suggestions << match.first
     end
 
