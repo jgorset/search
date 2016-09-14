@@ -21,6 +21,12 @@ class Search
       @haystacks.delete(file.path)
     end
 
+    # Match the given terms against the haystack.
+    #
+    # search - A String to search for.
+    #
+    # Returns an Array of a String describing the file path, and an Integer
+    # describing the quality of the match.
     def match(search)
       filenames_with_quality = haystacks.map do |path, haystack|
         [Search.new(haystack).match(search), path]
@@ -29,6 +35,11 @@ class Search
       limit sort filenames_with_quality
     end
 
+    # Get suggestions for narrowing the search.
+    #
+    # search - A String to provide suggestions for.
+    #
+    # Returns an Array of Strings that would narrow the search.
     def suggest(search)
       suggestions = haystacks.map do |path, haystack|
         Search.new(haystack).suggest(search)
