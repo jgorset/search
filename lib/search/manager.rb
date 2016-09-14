@@ -43,7 +43,7 @@ class Search
     def suggest(search)
       suggestions = haystacks.map do |path, haystack|
         Search.new(haystack).suggest(search)
-      end
+      end.flatten
 
       limit suggestions
     end
